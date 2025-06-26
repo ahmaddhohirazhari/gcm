@@ -342,9 +342,6 @@ import { ref, computed, reactive, onMounted } from 'vue';
 import FormInput from '../components/FormInput.vue';
 import { questionnaireData } from '../stores/question';
 import { api } from '../api';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
 
 // Phone Verification State
 const phoneNumber = ref('');
