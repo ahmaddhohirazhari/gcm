@@ -518,10 +518,8 @@ const handleSubmit = async () => {
   if (!validateSection() || !isFormValid.value) {
     return;
   }
-
   isSubmitting.value = true;
   errors.submission = '';
-
   try {
     // Siapkan data untuk dikirim
     const submissionData = {
@@ -537,22 +535,17 @@ const handleSubmit = async () => {
         .filter(([key]) => key.startsWith('Q'))
         .map(([questionId, answer]) => ({ questionId, answer })),
     };
-
     // Kirim ke Apps Script
     const response = await api.submitQuestionnaire(submissionData);
-
     if (response.success) {
-      // Set flag submitted
       isSubmitted.value = true;
+      // Reset form setelah 5 detik
+      setTimeout(resetForm, 5000);
     } else {
       throw new Error(response.message || 'Gagal menyimpan data');
     }
   } catch (error: any) {
-    console.error('Submission error:', error);
-    errors.submission = error.message || 'Terjadi kesalahan saat mengirim data';
-
-    // Tampilkan error alert atau toast
-    alert(`❌ Gagal mengirim kuesioner: ${error.message}`);
+    errors.submission = error.message;
   } finally {
     isSubmitting.value = false;
   }
