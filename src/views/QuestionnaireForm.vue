@@ -5,86 +5,88 @@
     class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4"
   >
     <div
-      class="w-full max-w-md bg-white rounded-xl shadow-sm p-6 sm:p-8 border border-slate-200/50"
+      class="w-full max-w-lg bg-white rounded-xl shadow-lg p-6 sm:p-8 border border-slate-200/50"
     >
-      <div class="text-center mb-6">
-        <div
-          class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl mb-4 shadow-lg shadow-indigo-500/25"
-        >
-          <svg
-            class="w-6 h-6 sm:w-8 sm:h-8 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+      <div class="mt-6">
+        <div class="text-center mb-6">
+          <div
+            class="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl mb-4 shadow-lg shadow-indigo-500/25"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-            />
-          </svg>
-        </div>
-        <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
-          Verifikasi Nomor HP
-        </h1>
-        <p class="text-slate-600">
-          Masukkan nomor HP Anda untuk memulai pengisian kuesioner
-        </p>
-      </div>
-
-      <div class="space-y-4">
-        <div>
-          <label
-            for="phone"
-            class="block text-sm font-medium text-slate-700 mb-1"
-            >Nomor HP</label
-          >
-          <input
-            v-model="phoneNumber"
-            type="tel"
-            id="phone"
-            placeholder="08xxxxxxxxxx"
-            class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            :class="{ 'border-red-500': phoneError }"
-          />
-          <p v-if="phoneError" class="mt-1 text-sm text-red-600">
-            {{ phoneError }}
+            <svg
+              class="w-6 h-6 sm:w-7 sm:h-7 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              />
+            </svg>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
+            Verifikasi Nomor HP
+          </h2>
+          <p class="text-slate-600">
+            Masukkan nomor HP Anda untuk memulai pengisian kuesioner.
           </p>
         </div>
 
-        <button
-          @click="verifyPhone"
-          :disabled="isVerifying"
-          class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
-        >
-          <svg
-            v-if="isVerifying"
-            class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              class="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              stroke-width="4"
-            ></circle>
-            <path
-              class="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            ></path>
-          </svg>
-          {{ isVerifying ? 'Memverifikasi...' : 'Verifikasi' }}
-        </button>
+        <div class="space-y-4">
+          <div>
+            <label
+              for="phone"
+              class="block text-sm font-medium text-slate-700 mb-1"
+              >Nomor HP</label
+            >
+            <input
+              v-model="phoneNumber"
+              type="tel"
+              id="phone"
+              placeholder="628xxxxxxxxxx"
+              class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              :class="{ 'border-red-500': phoneError }"
+            />
+            <p v-if="phoneError" class="mt-1 text-sm text-red-600">
+              {{ phoneError }}
+            </p>
+          </div>
 
-        <p v-if="verificationError" class="error-message">
-          {{ verificationError }}
-        </p>
+          <button
+            @click="verifyPhone"
+            :disabled="isVerifying"
+            class="w-full flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <svg
+              v-if="isVerifying"
+              class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            {{ isVerifying ? 'Memverifikasi...' : 'Verifikasi' }}
+          </button>
+
+          <p v-if="verificationError" class="text-sm text-center text-red-600">
+            {{ verificationError }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -118,6 +120,15 @@
         >
           Form Kuesioner
         </h1>
+        <div class="text-center mb-6 pb-6 border-b border-slate-200">
+          <h1
+            class="text-xl sm:text-2xl font-bold text-slate-800 leading-tight"
+          >
+            Penguatan Green Transformational Leadership melalui Green
+            Organizational Culture dan Green Self-Efficacy untuk Meningkatkan
+            Employee Green Behavior di Organisasi Berkelanjutan
+          </h1>
+        </div>
         <p
           class="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed"
         >
@@ -160,28 +171,62 @@
       <form @submit.prevent="handleSubmit" class="space-y-6 sm:space-y-8">
         <!-- Current Section -->
         <div
+          v-if="currentSection.id === 'personal-data'"
           class="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-slate-200/50 overflow-hidden"
         >
+          <div
+            class="bg-gradient-to-r from-slate-50 to-slate-100 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b border-slate-200"
+          >
+            <div class="space-y-4">
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Kepada :
+              </p>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Yth. Bapak/Ibu Karyawan Karyawati.
+              </p>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Dengan Hormat,
+              </p>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Dalam rangka pengembangan ilmu khususnya di bidang Manajemen
+                Sumber Daya Manusia, maka kami bermaksud mengadakan penelitian
+                yang berjudul “Penguatan Green Transformational Leadership
+                melalui Green Organizational Culture dan Green Self-Efficacy
+                untuk Meningkatkan Employee Green Behavior di Organisasi
+                Berkelanjutan”. Untuk itu kami sangat mengharapkan kesediaan
+                bapak/ibu untuk mengisi kuesionar terlampir. Pernyataan –
+                pernyataan yang ada dalam kuesioner tidak mencerminkan benar
+                atau salah, oleh karena itu kami mohon bapak/ibu memberikan
+                penilaian secara jujur.
+              </p>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Data dan informasi yang kami peroleh dari jawaban bapak/ibu akan
+                sangat membantu untuk penelitian dalam bidang manajemen, data
+                serta informasi tersebut akan dijaga kerahasiaannya dan hanya
+                digunakan untuk penelitian. Data akan dianalisis secara agregat
+                dari semua responden yang ada, bukan secara individual atau satu
+                individu saja.
+              </p>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+                Demikian permohonan ini kami sampaikan, atas kesediaan dan
+                perkenan bapak/ibu disampaikan banyak terima kasih.
+              </p>
+            </div>
+          </div>
           <!-- Section Header -->
           <div
             class="bg-gradient-to-r from-slate-50 to-slate-100 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b border-slate-200"
           >
             <h2
               class="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 mb-2 flex items-center"
+            ></h2>
+
+            <span
+              class="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-indigo-600 text-white rounded-lg text-xs sm:text-sm font-bold mr-3 flex-shrink-0"
             >
-              <span
-                class="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-indigo-600 text-white rounded-lg text-xs sm:text-sm font-bold mr-3 flex-shrink-0"
-              >
-                {{ currentSectionIndex + 1 }}
-              </span>
-              <span class="break-words">{{ currentSection.title }}</span>
-            </h2>
-            <p
-              v-if="currentSection.description"
-              class="text-sm sm:text-base text-slate-600 leading-relaxed"
-            >
-              {{ currentSection.description }}
-            </p>
+              {{ currentSectionIndex + 1 }}
+            </span>
+            <span class="break-words">{{ currentSection.title }}</span>
           </div>
 
           <!-- Questions -->
@@ -416,8 +461,10 @@ const verifyPhone = async () => {
 
   try {
     // Validasi format nomor HP
-    if (!phoneNumber.value || !/^[0-9]{10,13}$/.test(phoneNumber.value)) {
-      throw new Error('Format nomor HP tidak valid');
+    if (!phoneNumber.value || !/^628[0-9]{8,12}$/.test(phoneNumber.value)) {
+      throw new Error(
+        'Format nomor HP tidak valid. Nomor harus diawali dengan 628 dan diikuti 8-12 digit lainnya.'
+      );
     }
 
     const response = await api.checkPhoneNumber(phoneNumber.value);
@@ -427,7 +474,7 @@ const verifyPhone = async () => {
     } else if (response.success) {
       phoneVerified.value = true;
       // Simpan nomor HP ke form data
-      formData.phone = phoneNumber.value;
+      formData.no_hp = phoneNumber.value;
     } else {
       throw new Error(response.message || 'Gagal memverifikasi nomor HP');
     }
@@ -512,42 +559,65 @@ const previousSection = () => {
 
 // Di dalam <script setup> component Anda
 const handleSubmit = async () => {
-  if (!validateSection() || !isFormValid.value) {
+  // Validasi form sebelum mengirim
+  if (!isFormValid.value) {
+    // Anda bisa menambahkan logika untuk men-trigger semua pesan error jika diperlukan
+    console.error('Submit Gagal: Form tidak valid.');
     return;
   }
+
   isSubmitting.value = true;
-  errors.submission = '';
+  // Hapus pesan error submit sebelumnya
+  if (errors.submission) delete errors.submission;
+
   try {
-    // Siapkan data untuk dikirim
+    // Siapkan data untuk dikirim dengan struktur yang benar
     const submissionData = {
       personalData: {
-        name: formData.fullName,
-        gender: formData.gender,
-        age: formData.age,
-        workDuration: formData.workDuration,
-        workCity: formData.workCity,
-        phone: formData.phone,
+        // Mapping dari formData ke properti yang benar
+        nama: formData.nama,
+        jenisKelamin: formData.jenisKelamin,
+        usia: formData.usia,
+        pendidikanTerakhir: formData.pendidikanTerakhir,
+        statusPerkawinan: formData.statusPerkawinan,
+        lamaBekerja: formData.lamaBekerja,
+        jabatan: formData.jabatan,
+        wilayahHotel: formData.wilayahHotel,
+        namaHotel: formData.namaHotel,
+        no_hp: formData.no_hp,
       },
+      // Filter jawaban kuesioner dari formData secara akurat
       responses: Object.entries(formData)
-        .filter(([key]) => key.startsWith('Q'))
+        .filter(([key]) => {
+          // Hanya sertakan entri yang key-nya adalah ID pertanyaan kuesioner
+          // dengan cara memeriksa ke sumber data 'questionnaireData'
+          return questionnaireData.some(
+            (section) =>
+              section.id !== 'personal-data' &&
+              section.questions.some((q) => q.id === key)
+          );
+        })
         .map(([questionId, answer]) => ({ questionId, answer })),
     };
-    // Kirim ke Apps Script
+
+    // Kirim data yang sudah rapi ke Apps Script
     const response = await api.submitQuestionnaire(submissionData);
+
     if (response.success) {
       isSubmitted.value = true;
-      // Reset form setelah 5 detik
+      // Reset form setelah beberapa detik
       setTimeout(resetForm, 5000);
     } else {
-      throw new Error(response.message || 'Gagal menyimpan data');
+      // Jika server mengembalikan 'success: false', lempar error
+      throw new Error(response.message || 'Gagal menyimpan data di server.');
     }
   } catch (error: any) {
     errors.submission = error.message;
+    console.error('Error saat submit:', error);
   } finally {
     isSubmitting.value = false;
   }
 };
-
 const resetForm = () => {
   Object.keys(formData).forEach((key) => delete formData[key]);
   Object.keys(errors).forEach((key) => delete errors[key]);
