@@ -167,22 +167,30 @@
           </div>
         </div>
       </div>
-
       <form @submit.prevent="handleSubmit" class="space-y-6 sm:space-y-8">
-        <!-- Current Section -->
         <div
-          v-if="currentSection.id === 'personal-data'"
           class="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-slate-200/50 overflow-hidden"
         >
           <div
             class="bg-gradient-to-r from-slate-50 to-slate-100 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b border-slate-200"
           >
-            <div class="space-y-4">
+            <h2
+              class="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 flex items-center"
+            >
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-indigo-600 text-white rounded-lg text-xs sm:text-sm font-bold mr-3 flex-shrink-0"
+              >
+                {{ currentSectionIndex + 1 }}
+              </span>
+              <span class="break-words">{{ currentSection.title }}</span>
+            </h2>
+
+            <div
+              v-if="currentSection.id === 'personal-data'"
+              class="mt-4 space-y-4"
+            >
               <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-                Kepada :
-              </p>
-              <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
-                Yth. Bapak/Ibu Karyawan Karyawati.
+                Kepada : Yth. Bapak/Ibu Karyawan Karyawati.
               </p>
               <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
                 Dengan Hormat,
@@ -213,23 +221,7 @@
               </p>
             </div>
           </div>
-          <!-- Section Header -->
-          <div
-            class="bg-gradient-to-r from-slate-50 to-slate-100 px-4 sm:px-6 lg:px-8 py-4 sm:py-6 border-b border-slate-200"
-          >
-            <h2
-              class="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 mb-2 flex items-center"
-            ></h2>
 
-            <span
-              class="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 bg-indigo-600 text-white rounded-lg text-xs sm:text-sm font-bold mr-3 flex-shrink-0"
-            >
-              {{ currentSectionIndex + 1 }}
-            </span>
-            <span class="break-words">{{ currentSection.title }}</span>
-          </div>
-
-          <!-- Questions -->
           <div class="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8">
             <FormInput
               v-for="question in currentSection.questions"
@@ -243,11 +235,9 @@
           </div>
         </div>
 
-        <!-- Navigation Buttons -->
         <div
           class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4 pt-4"
         >
-          <!-- Previous Button -->
           <button
             v-if="currentSectionIndex > 0"
             type="button"
@@ -271,13 +261,12 @@
           </button>
           <div v-else class="hidden sm:block sm:w-32"></div>
 
-          <!-- Next/Submit Button -->
           <button
             v-if="currentSectionIndex < questionnaireData.length - 1"
             type="button"
             @click="nextSection"
             :disabled="!isSectionValid"
-            class="group inline-flex items-center justify-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 border-2 border-transparent text-sm sm:text-base font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-indigo-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-indigo-600 disabled:hover:to-purple-600 transition-all duration-200 shadow-lg shadow-indigo-500/25 order-1 sm:order-2"
+            class="group inline-flex items-center justify-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 border-2 border-transparent text-sm sm:text-base font-semibold rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 focus:outline-none focus:ring-4 focus:ring-indigo-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg shadow-indigo-500/25 order-1 sm:order-2"
           >
             <span>Selanjutnya</span>
             <svg
@@ -299,7 +288,7 @@
             v-else
             type="submit"
             :disabled="!isFormValid || isSubmitting"
-            class="group inline-flex items-center justify-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 border-2 border-transparent text-sm sm:text-base font-semibold rounded-xl text-white bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-4 focus:ring-green-100 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:from-green-600 disabled:hover:to-emerald-600 transition-all duration-200 shadow-lg shadow-green-500/25 order-1 sm:order-2"
+            class="group inline-flex items-center justify-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 border-2 border-transparent text-sm sm:text-base font-semibold rounded-xl text-white bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 focus:outline-none focus:ring-4 focus:ring-green-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg shadow-green-500/25 order-1 sm:order-2"
           >
             <svg
               v-if="isSubmitting"
@@ -340,7 +329,6 @@
           </button>
         </div>
       </form>
-
       <!-- Success Message -->
       <div
         v-if="isSubmitted"

@@ -141,6 +141,7 @@ export const questionnaireData: QuestionSection[] = [
         options: [
           { value: 'Head Of Department', label: 'Head Of Department' },
           { value: 'Rank and File', label: 'Rank and File' },
+          { value: '__other_option__', label: 'Yang lain:' },
         ],
       },
       {
